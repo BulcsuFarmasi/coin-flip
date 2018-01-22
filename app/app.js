@@ -8,6 +8,7 @@ console.time('timer');
 generator.generateResults(10000);
 const results = generator.getResults();
 generator.generateStats();
+console.log(results);
 //const stats = generator.getStats();
 //console.log(stats);
 
