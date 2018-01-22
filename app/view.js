@@ -4,15 +4,14 @@ export class View {
         this.stats = stats;
     }
 
-    renderImages (resultGenerator) {
+    renderImages (results) {
         const folder = 'images/';
-        console.log(resultGenerator.next().done);
-        while (!resultGenerator.next().done) {
+        results.subscribe((result) => {
             let image = new Image();
             image.src = folder;
-            image.src += (resultGenerator.next().value) ? 'head.png' : 'tails.png';
+            image.src += (result) ? 'head.png' : 'tails.png';
             document.body.appendChild(image);
-        }
+        });
     }
 
 }

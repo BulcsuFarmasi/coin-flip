@@ -5,14 +5,15 @@ const generator = new Generator();
 
 
 console.time('timer');
-const resultGenerator = generator.generateResults(10000);
-generator.generateStats(resultGenerator);
-const stats = generator.getStats();
-console.log(stats);
+generator.generateResults(10000);
+const results = generator.getResults();
+generator.generateStats();
+//const stats = generator.getStats();
+//console.log(stats);
 
 const view = new View();
 
 
-view.assign(stats);
-view.renderImages(resultGenerator);
+//view.assign(stats);
+view.renderImages(results);
 console.timeEnd('timer');

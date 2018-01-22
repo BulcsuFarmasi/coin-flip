@@ -2,6 +2,7 @@ export class Generator {
 
     constructor () {
         this.stats = {};
+        this.results = new Rx.Subject();
     }
 
     generate () {
@@ -11,8 +12,7 @@ export class Generator {
     * generateResults (limit) {
         let i = 0;
         while (i < limit) {
-            let result = this.generate();
-            yield result;
+            this.results.next(this.generate());
             i++;
         }
     }
@@ -21,20 +21,27 @@ export class Generator {
         this.stats.all = 0;
         this.stats.heads = 0;
         this.stats.tails = 0;
-        while (!resultGenerator.next().done) {
-             this.stats.all++;
-             if(resultGenerator.next().value) {
-                 this.stats.heads++;
-             } else {
-                 this.stats.tails++;
-             }
-        }
-        this.stats.headPercent = this.stats.heads / this.stats.all * 100;
-        this.stats.tailsPercent = this.stats.tails / this.stats.all * 100;
+        this.results.subscribe((result) => {
+            this.stats.all++;
+            if(resultGenerator.next().value) {
+                this.stats.heads++;
+            } else {
+                this.stats.tails++;
+            }
+            this.stats.headPercent = this.stats.heads / this.stats.all * 100;
+            this.stats.tailsPercent = this.stats.tails / this.stats.all * 100;
+            console.log(tests);
+        })
+
+
     }
 
     getStats () {
         return this.stats;
+    }
+
+    getResults () {
+        return this.results;
     }
 
 }
