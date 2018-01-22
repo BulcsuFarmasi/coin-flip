@@ -1,15 +1,16 @@
 export class View {
 
-    assign (results) {
-        this.results = results;
+    assign (stats) {
+        this.stats = stats;
     }
 
-    renderImages () {
+    renderImages (resultGenerator) {
         const folder = 'images/';
-        for (let result of this.results){
+        console.log(resultGenerator.next().done);
+        while (!resultGenerator.next().done) {
             let image = new Image();
             image.src = folder;
-            image.src += (result) ? 'head.png' : 'tails.png';
+            image.src += (resultGenerator.next().value) ? 'head.png' : 'tails.png';
             document.body.appendChild(image);
         }
     }
