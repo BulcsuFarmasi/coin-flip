@@ -1,20 +1,9 @@
-import { Generator } from './generator';
-import { View } from './view';
+import { Generator } from './generator.js';
+import { View } from './view.js';
 
-const generator = new Generator();
+const generator = new Generator(new View());
 
 
 console.time('timer');
-generator.generateResults(10000);
-const results = generator.getResults();
+generator.generateResults(100);
 generator.generateStats();
-console.log(results);
-//const stats = generator.getStats();
-//console.log(stats);
-
-const view = new View();
-
-
-//view.assign(stats);
-view.renderImages(results);
-console.timeEnd('timer');
