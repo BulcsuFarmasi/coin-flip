@@ -6,11 +6,10 @@ export class View {
 
     renderImage (result) {
         const folder = 'images/';
-        console.log(result);
         let image = new Image();
         image.src = folder;
-        image.src += (result) ? 'head.png' : 'tails.png';
-        image.alt = (result) ? "Fej" : "Írás";
+        image.src += (result.value) ? 'head.png' : 'tails.png';
+        image.alt = (result.value) ? "Fej" : "Írás";
         document.body.insertBefore(image, this.statsElem);
     }
 

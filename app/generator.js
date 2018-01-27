@@ -8,7 +8,8 @@ export class Generator {
             headPercent: 0,
             tailsPercent: 0
         };
-        this.results = new Rx.Subject();
+        this.results = new Rx.Subject()
+            .mergeMap(result => {console.log(result);return Rx.Observable.of(result).delay(result.index * 1000)});
         this.view = view;
         this.results.subscribe(result => { 
             this.view.renderImage(result)
@@ -21,24 +22,26 @@ export class Generator {
     }
 
     generateResults (limit) {
-        let i = 1;
+        let i = 0;
         while (i < limit){
-            this.results.next(this.generate());
+            this.results.next({ value: this.generate(), index: i});
             i++;
         }
         
     }
 
     generateStats (result) {
-        this.stats.all++;
         if (result) {
-            this.stats.heads++;
-        } else {
-            this.stats.tails++;
+            this.stats.all++;
+            if (result.value) {
+                this.stats.heads++;
+            } else {
+                this.stats.tails++;
+            }
+            this.stats.headPercent = this.stats.heads / this.stats.all * 100;
+            this.stats.tailsPercent = this.stats.tails / this.stats.all * 100;
+            this.view.renderStats(this.stats);
         }
-        this.stats.headPercent = this.stats.heads / this.stats.all * 100;
-        this.stats.tailsPercent = this.stats.tails / this.stats.all * 100;
-        this.view.renderStats(this.stats);
     }
 
 }
