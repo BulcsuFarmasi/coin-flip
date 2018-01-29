@@ -23,6 +23,7 @@ export class View {
         image.src += (coin) ? 'head.png' : 'tails.png';
         image.alt = (coin) ? "Fej" : "Írás";
         this.coins.appendChild(image);
+        image.classList.add('appear');
     }
 
     renderStats (stats) {

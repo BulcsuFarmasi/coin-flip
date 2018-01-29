@@ -1,3 +1,71 @@
+@keyframes appear {
+    from { 
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+.coin-flip {
+    background-color: #f1f1f1;
+    width: 90%;
+    margin:20px auto;
+    padding:20px;
+    text-align: center;
+}
+
+.coins {
+    width: 70%;
+    margin: 10px auto
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 50%;
+    margin:0 auto
+}
+
+.settings input {
+    width: 85%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #ccc;
+    color: #222;
+}
+
+footer {
+    text-align: center;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+h2 {
+    font-size: 1.7em
+}
+
 img {
-    width: 40px;
+    width: 60px;
+    margin: 10px;
+    opacity: 0;
+ }
+ img.appear {
+    animation: appear 1s;
+    opacity: 1;
+ }
+input, button {
+    padding: 10px;
+    border: none;
+    font-size:1.4em;
+    border-radius: 0;
+}
+
+button {
+    background-color: #80c3d8;
+    color: #fefefe;
 }
