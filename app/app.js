@@ -1,10 +1,8 @@
-import { Generator } from './generator.js';
+import { Controller } from "./controller.js";
+import { Model } from './model.js';
 import { View } from './view.js';
 
-const generator = new Generator(new View());
 
+const controller = new Controller(new Model(), new View());
 
-console.time('timer');
-generator.generateResults(100);
-generator.generateStats();
-console.timeEnd('timer');
+controller.tossCoins();

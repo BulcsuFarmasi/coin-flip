@@ -8,6 +8,22 @@
         <script src="app/app.js" type="module" defer></script>
     </head>
     <body>
-        <p class="stats"></p>
+        <h1>Pénzfeldobó</h1>
+        <h2>Beállítások</h2>
+        <p>
+            <label for="coin-toss-number">Dobások száma</label><br>
+            <input type="number" id="coin-toss-number">
+        </p>
+        <p>
+            <label for="delay">Késleltés a dobások között (mp)</label><br>
+            <input type="number" id="delay">
+        </p>
+        <p>
+            <button id="start">Kezd el dobni</button>
+        </p>
+        <h2>Érmék</h2>
+        <section id="coins"></section>
+        <h2>Statisztikák</h2>
+        <p id="stats"></p>
     </body>
 </html>
