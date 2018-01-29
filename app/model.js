@@ -32,9 +32,16 @@ export class Model {
         } else {
             this.stats.tails++;
         }
-        this.stats.headPercent = this.stats.heads / this.stats.all * 100;
-        this.stats.tailsPercent = this.stats.tails / this.stats.all * 100;  
+        this.stats.headPercent = this.roundTo(this.stats.heads / this.stats.all * 100, 2);
+        this.stats.tailsPercent = this.roundTo(this.stats.tails / this.stats.all * 100, 2);  
         return Rx.Observable.of(this.stats);
+    }
+
+    roundTo (number, factor) {
+        number *= 10 ** factor;
+        number = Math.round(number);
+        number /= 10 ** factor;
+        return number;
     }
 
 }
