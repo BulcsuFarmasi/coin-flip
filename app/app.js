@@ -5,4 +5,5 @@ import { View } from './view.js';
 
 const controller = new Controller(new Model(), new View());
 
-controller.tossCoins();
+controller.getCoinTypes();
+controller.flipCoins();

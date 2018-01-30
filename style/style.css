@@ -20,15 +20,19 @@
     margin: 10px auto
 }
 
+.coin-type {
+    grid-column: 1 / 3;
+}
+
+.coin-type select, .settings input {
+    width: 85%;
+}
+
 .settings {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 50%;
     margin:0 auto
-}
-
-.settings input {
-    width: 85%;
 }
 
 body {
@@ -58,7 +62,7 @@ img {
     animation: appear 1s;
     opacity: 1;
  }
-input, button {
+input, button, select {
     padding: 10px;
     border: none;
     font-size:1.4em;

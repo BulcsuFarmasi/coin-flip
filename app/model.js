@@ -1,14 +1,14 @@
 export class Model {
 
-    tossCoin () {
+    flipCoin () {
         return Math.round(Math.random());
     }
 
-    tossCoins (number, delay) {
+    flipCoins (number, delay) {
         return new Rx.Observable((observer) => {
             let i = 0;
             while (i < number) {
-                observer.next({ value: this.tossCoin(), index: i});
+                observer.next({ value: this.flipCoin(), index: i});
                 i++  
             }
         }).mergeMap(coin => Rx.Observable.of(coin.value).delay(coin.index * (delay * 1000)));
@@ -19,7 +19,7 @@ export class Model {
             all: 0,
             heads: 0,
             tails: 0,
-            headPercent: 0,
+            headsPercent: 0,
             tailsPercent: 0
         }
     }
@@ -32,9 +32,16 @@ export class Model {
         } else {
             this.stats.tails++;
         }
-        this.stats.headPercent = this.roundTo(this.stats.heads / this.stats.all * 100, 2);
+        this.stats.headsPercent = this.roundTo(this.stats.heads / this.stats.all * 100, 2);
         this.stats.tailsPercent = this.roundTo(this.stats.tails / this.stats.all * 100, 2);  
         return Rx.Observable.of(this.stats);
+    }
+
+    getCoinTypes () {
+        return Rx.Observable.fromPromise(
+            fetch('./coin-types.json')
+            .then(response => response.json())
+        )
     }
 
     roundTo (number, factor) {

@@ -9,33 +9,39 @@
     </head>
     <body>
         <div class="coin-flip">
-            <h1>Pénzfeldobó</h1>
-            <h2>Beállítások</h2>
+            <h1>CoinFlip</h1>
+            <h2>Settings</h2>
             <div class="settings">
                 <p>
-                    <label for="coin-toss-number">Dobások száma</label>
+                    <label for="coin-toss-number">Number of Coin Flips</label>
                     <br>
                     <input type="number" id="coin-toss-number">
                 </p>
                 <p>
-                    <label for="delay">Késleltés a dobások között (mp)</label>
+                    <label for="delay">Delay between Coin Flips (s)</label>
                     <br>
                     <input type="number" id="delay">
                 </p>
+                <p class="coin-type">
+                    <label for="delay">Choose Coin type</label>
+                    <br>
+                    <select id="coin-type">
+
+                    </select>    
+                </p>
             </div>
             <p>
-                <button id="start">Kezd el dobni</button>
+                <button id="start">Start Flipping!</button>
             </p>
-            <h2>Érmék</h2>
+            <h2>Coins</h2>
             <section id="coins" class="coins"></section>
-            <h2>Statisztikák</h2>
+            <h2>Stats</h2>
             <p id="stats"></p>
         </div>
         <footer>
                 <h3>Todo</h3>
                 <ul>
-                    <li>Lefordítani angolra</li>
-                    <li>Választás több érme közül</li>
+                    <li>Choose between different coins</li>
                     <li>GitHub</li>
                 </ul>
             <p>

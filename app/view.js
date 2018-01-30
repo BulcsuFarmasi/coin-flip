@@ -5,6 +5,7 @@ export class View {
         this.delay = document.querySelector('#delay');
         this.start = document.querySelector('#start');
         this.coins = document.querySelector('#coins');
+        this.coinType = document.querySelector('#coin-type');
         this.stats = document.querySelector('#stats');
     }
 
@@ -20,15 +21,25 @@ export class View {
         const folder = 'images/';
         let image = new Image();
         image.src = folder;
-        image.src += (coin) ? 'head.png' : 'tails.png';
-        image.alt = (coin) ? "Fej" : "Írás";
+        image.src += (coin) ? 'heads.png' : 'tails.png';
+        image.alt = (coin) ? "Heads" : "Tails";
         this.coins.appendChild(image);
         image.classList.add('appear');
     }
 
+    renderCoinTypes (coinTypes) {
+        console.log(coinTypes);
+        for (let coinType of coinTypes) {
+            let option = document.createElement('option');
+            option.innerHTML = coinType.name;
+            option.value = coinType.id;
+            this.coinType.appendChild(option);
+        }
+    }
+
     renderStats (stats) {
-        this.stats.innerHTML = `Összes pénz feldobás: ${stats.all}, amelyből fej: ${stats.heads} (${stats.headPercent}%), 
-                           írás ${stats.tails} (${stats.tailsPercent}%)`
+        this.stats.innerHTML = `All coin flips: ${stats.all}, of which are heads: ${stats.heads} (${stats.headsPercent}%), 
+                           tails ${stats.tails} (${stats.tailsPercent}%)`
     }
 
     watchStart () {
