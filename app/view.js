@@ -17,8 +17,8 @@ export class View {
         this.stats.innerHTML = '';
     }
 
-    renderCoin (coin) {
-        const folder = 'images/';
+    renderCoin (coin,coinType) {
+        const folder = `images/${coinType}/`;
         let image = new Image();
         image.src = folder;
         image.src += (coin) ? 'heads.png' : 'tails.png';
@@ -28,7 +28,6 @@ export class View {
     }
 
     renderCoinTypes (coinTypes) {
-        console.log(coinTypes);
         for (let coinType of coinTypes) {
             let option = document.createElement('option');
             option.innerHTML = coinType.name;
@@ -45,6 +44,11 @@ export class View {
     watchStart () {
         return Rx.Observable.fromEvent(this.start, 'click')
                .mergeMap(event => Rx.Observable.of({ coinTossNumber: this.coinTossNumber.value, delay: this.delay.value  }))
+    }
+
+    watchCoinType () {
+        return Rx.Observable.fromEvent(this.coinType, 'change')
+            .map(event => event.target.value);
     }
 
 }

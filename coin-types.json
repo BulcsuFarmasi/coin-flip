@@ -2,5 +2,9 @@
     {
         "id": 1,
         "name": "Hungarian 100 HUF"
+    },
+    {
+        "id": 2,
+        "name": "Hungarian 200 HUF"
     }
 ]
