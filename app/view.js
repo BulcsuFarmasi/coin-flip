@@ -7,6 +7,7 @@ export class View {
         this.coins = document.querySelector('#coins');
         this.coinType = document.querySelector('#coin-type');
         this.stats = document.querySelector('#stats');
+        this.sampleCoin = document.querySelector('#sample-coin');
     }
 
     clearCoins() {
@@ -19,7 +20,7 @@ export class View {
 
     renderCoin (coin,coinType) {
         const folder = `images/${coinType}/`;
-        let image = new Image();
+        const image = new Image();
         image.src = folder;
         image.src += (coin) ? 'heads.png' : 'tails.png';
         image.alt = (coin) ? "Heads" : "Tails";
@@ -34,6 +35,23 @@ export class View {
             option.value = coinType.id;
             this.coinType.appendChild(option);
         }
+    }
+
+    renderSampleCoin (coinType) {
+        console.log(coinType);
+        const folder = `images/${coinType}/`;
+        if (!this.sampleCoin.innerHTML) {
+            this.sampleHeads = new Image();
+            this.sampleHeads.alt = 'Heads';
+            this.sampleCoin.appendChild(this.sampleHeads);
+            this.sampleHeads.classList.add('appear');
+            this.sampleTails = new Image();
+            this.sampleTails.alt = 'Tails';
+            this.sampleCoin.appendChild(this.sampleTails);
+            this.sampleTails.classList.add('appear');
+        }
+        this.sampleHeads.src = folder + 'heads.png'; 
+        this.sampleTails.src = folder + 'tails.png';
     }
 
     renderStats (stats) {
